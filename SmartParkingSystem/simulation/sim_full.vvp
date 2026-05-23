@@ -1,0 +1,1745 @@
+#! /usr/local/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x7fb90b104220 .scope module, "tb_real_world_scenarios" "tb_real_world_scenarios" 2 3;
+ .timescale -9 -12;
+v0x7fb90b11d710_0 .net "available_spots", 3 0, L_0x7fb90b11e790;  1 drivers
+v0x7fb90b11d7c0_0 .var "clk", 0 0;
+v0x7fb90b11d850_0 .net "current_count", 3 0, v0x7fb90b117690_0;  1 drivers
+v0x7fb90b11d8e0_0 .net "entry_allowed", 0 0, v0x7fb90b11bf20_0;  1 drivers
+v0x7fb90b11d970_0 .var "entry_sensor1", 0 0;
+v0x7fb90b11da80_0 .var "entry_sensor2", 0 0;
+v0x7fb90b11db50_0 .var "exit_sensor1", 0 0;
+v0x7fb90b11dc20_0 .var "exit_sensor2", 0 0;
+v0x7fb90b11dcf0_0 .var/i "fail_count", 31 0;
+RS_0x7fb90b242188 .resolv tri, v0x7fb90b117850_0, v0x7fb90b11c0b0_0;
+v0x7fb90b11de00_0 .net8 "parking_full", 0 0, RS_0x7fb90b242188;  2 drivers
+v0x7fb90b11de90_0 .var/i "pass_count", 31 0;
+v0x7fb90b11df20_0 .var "reset", 0 0;
+v0x7fb90b11dfb0_0 .net "seven_seg_ones", 6 0, v0x7fb90b119820_0;  1 drivers
+v0x7fb90b11e040_0 .net "seven_seg_tens", 6 0, v0x7fb90b119d40_0;  1 drivers
+E_0x7fb90b104670 .event posedge, v0x7fb90b1175e0_0;
+S_0x7fb90b1046b0 .scope task, "check_state" "check_state" 2 333, 2 333 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+v0x7fb90b104870_0 .var "expected_count", 3 0;
+v0x7fb90b114930_0 .var "expected_full", 0 0;
+v0x7fb90b1149d0_0 .var "expected_spots", 3 0;
+v0x7fb90b114a70_0 .var "test_name", 255 0;
+TD_tb_real_world_scenarios.check_state ;
+    %delay 10000, 0;
+    %load/vec4 v0x7fb90b11d710_0;
+    %load/vec4 v0x7fb90b1149d0_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %jmp/0 T_0.3, 4;
+    %load/vec4 v0x7fb90b11d850_0;
+    %load/vec4 v0x7fb90b104870_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+T_0.3;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_0.2, 9;
+    %load/vec4 v0x7fb90b11de00_0;
+    %load/vec4 v0x7fb90b114930_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+T_0.2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %vpi_call 2 343 "$display", "\342\234\223 PASS: %0s", v0x7fb90b114a70_0 {0 0 0};
+    %vpi_call 2 344 "$display", "  Available: %0d | Count: %0d | Full: %0b", v0x7fb90b11d710_0, v0x7fb90b11d850_0, v0x7fb90b11de00_0 {0 0 0};
+    %load/vec4 v0x7fb90b11de90_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x7fb90b11de90_0, 0, 32;
+    %jmp T_0.1;
+T_0.0 ;
+    %vpi_call 2 349 "$display", "\342\234\227 FAIL: %0s", v0x7fb90b114a70_0 {0 0 0};
+    %vpi_call 2 350 "$display", "  Expected -> Available: %0d | Count: %0d | Full: %0b", v0x7fb90b1149d0_0, v0x7fb90b104870_0, v0x7fb90b114930_0 {0 0 0};
+    %vpi_call 2 352 "$display", "  Got      -> Available: %0d | Count: %0d | Full: %0b", v0x7fb90b11d710_0, v0x7fb90b11d850_0, v0x7fb90b11de00_0 {0 0 0};
+    %load/vec4 v0x7fb90b11dcf0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x7fb90b11dcf0_0, 0, 32;
+T_0.1 ;
+    %end;
+S_0x7fb90b114b20 .scope task, "display_results" "display_results" 2 360, 2 360 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.display_results ;
+    %vpi_call 2 362 "$display", "\012" {0 0 0};
+    %vpi_call 2 363 "$display", "\342\225\224\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\227" {0 0 0};
+    %vpi_call 2 364 "$display", "\342\225\221              TEST RESULTS SUMMARY                  \342\225\221" {0 0 0};
+    %vpi_call 2 365 "$display", "\342\225\240\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\243" {0 0 0};
+    %load/vec4 v0x7fb90b11de90_0;
+    %load/vec4 v0x7fb90b11dcf0_0;
+    %add;
+    %vpi_call 2 366 "$display", "\342\225\221  Total Tests: %2d                                   \342\225\221", S<0,vec4,s32> {1 0 0};
+    %vpi_call 2 367 "$display", "\342\225\221  Tests Passed: %2d                                  \342\225\221", v0x7fb90b11de90_0 {0 0 0};
+    %vpi_call 2 368 "$display", "\342\225\221  Tests Failed: %2d                                  \342\225\221", v0x7fb90b11dcf0_0 {0 0 0};
+    %vpi_call 2 369 "$display", "\342\225\240\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\243" {0 0 0};
+    %load/vec4 v0x7fb90b11dcf0_0;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_1.4, 4;
+    %vpi_call 2 371 "$display", "\342\225\221           \342\234\223 ALL TESTS PASSED! \342\234\223                   \342\225\221" {0 0 0};
+    %jmp T_1.5;
+T_1.4 ;
+    %vpi_call 2 374 "$display", "\342\225\221           \342\234\227 SOME TESTS FAILED \342\234\227                   \342\225\221" {0 0 0};
+T_1.5 ;
+    %vpi_call 2 376 "$display", "\342\225\232\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\235" {0 0 0};
+    %vpi_call 2 377 "$display", "\012" {0 0 0};
+    %end;
+S_0x7fb90b114cf0 .scope task, "initialize" "initialize" 2 87, 2 87 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.initialize ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11da80_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11db50_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11dc20_0, 0, 1;
+    %delay 100000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 50000, 0;
+    %end;
+S_0x7fb90b114ed0 .scope task, "simulate_vehicle_entry" "simulate_vehicle_entry" 2 307, 2 307 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.simulate_vehicle_entry ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 60000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11da80_0, 0, 1;
+    %delay 120000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 60000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11da80_0, 0, 1;
+    %end;
+S_0x7fb90b115090 .scope task, "simulate_vehicle_exit" "simulate_vehicle_exit" 2 320, 2 320 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.simulate_vehicle_exit ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11db50_0, 0, 1;
+    %delay 60000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11dc20_0, 0, 1;
+    %delay 120000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11db50_0, 0, 1;
+    %delay 60000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11dc20_0, 0, 1;
+    %end;
+S_0x7fb90b115290 .scope task, "test_01_system_reset" "test_01_system_reset" 2 101, 2 101 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_01_system_reset ;
+    %vpi_call 2 103 "$display", "\012[TEST 1] System Initialization and Reset" {0 0 0};
+    %vpi_call 2 104 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 100000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 50000, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1400468340, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1701650514, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1702061428, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115450 .scope task, "test_02_single_entry" "test_02_single_entry" 2 114, 2 114 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_02_single_entry ;
+    %vpi_call 2 116 "$display", "\012[TEST 2] Single Vehicle Entry" {0 0 0};
+    %vpi_call 2 117 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 500000, 0;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1399418471, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1818566725, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1853125241, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115610 .scope task, "test_03_single_exit" "test_03_single_exit" 2 125, 2 125 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_03_single_exit ;
+    %vpi_call 2 127 "$display", "\012[TEST 3] Single Vehicle Exit" {0 0 0};
+    %vpi_call 2 128 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %delay 500000, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 5466478, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1735157024, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1165519220, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b1157d0 .scope task, "test_04_multiple_entries" "test_04_multiple_entries" 2 136, 2 136 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_04_multiple_entries ;
+    %vpi_call 2 138 "$display", "\012[TEST 4] Multiple Sequential Entries (5 vehicles)" {0 0 0};
+    %vpi_call 2 139 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 5, 0, 32;
+T_8.6 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_8.7, 5;
+    %jmp/1 T_8.7, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 400000, 0;
+    %jmp T_8.6;
+T_8.7 ;
+    %pop/vec4 1;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 891310949, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1903519086, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1953063276, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 541421172, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1919509875, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115a10 .scope task, "test_05_multiple_exits" "test_05_multiple_exits" 2 149, 2 149 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_05_multiple_exits ;
+    %vpi_call 2 151 "$display", "\012[TEST 5] Multiple Sequential Exits (2 vehicles)" {0 0 0};
+    %vpi_call 2 152 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 2, 0, 32;
+T_9.8 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_9.9, 5;
+    %jmp/1 T_9.9, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %delay 400000, 0;
+    %jmp T_9.8;
+T_9.9 ;
+    %pop/vec4 1;
+    %pushi/vec4 7, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 12832, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1399157109, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1701737577, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1634476101, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 2020177011, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115bd0 .scope task, "test_06_fill_to_capacity" "test_06_fill_to_capacity" 2 162, 2 162 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_06_fill_to_capacity ;
+    %vpi_call 2 164 "$display", "\012[TEST 6] Fill Parking to Maximum Capacity" {0 0 0};
+    %vpi_call 2 165 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 7, 0, 32;
+T_10.10 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_10.11, 5;
+    %jmp/1 T_10.11, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 400000, 0;
+    %jmp T_10.10;
+T_10.11 ;
+    %pop/vec4 1;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1348563563, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1768843040, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1182100588, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115d90 .scope task, "test_07_entry_when_full" "test_07_entry_when_full" 2 175, 2 175 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_07_entry_when_full ;
+    %vpi_call 2 177 "$display", "\012[TEST 7] Attempt Entry When Full" {0 0 0};
+    %vpi_call 2 178 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 500000, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 17774, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1953659168, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1114402659, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1801806880, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 757093236, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1768713248, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1182100588, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b115f50 .scope task, "test_08_exit_when_full" "test_08_exit_when_full" 2 186, 2 186 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_08_exit_when_full ;
+    %vpi_call 2 188 "$display", "\012[TEST 8] Exit When Parking is Full" {0 0 0};
+    %vpi_call 2 189 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %delay 500000, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 1165519220, 0, 32; draw_string_vec4
+    %pushi/vec4 543584879, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1830831733, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1819025453, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 542339169, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1667571777, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1986095468, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1633840229, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116110 .scope task, "test_09_simultaneous_operations" "test_09_simultaneous_operations" 2 197, 2 197 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_09_simultaneous_operations ;
+    %vpi_call 2 199 "$display", "\012[TEST 9] Simultaneous Entry and Exit" {0 0 0};
+    %vpi_call 2 200 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork t_1, S_0x7fb90b116110;
+    %fork t_2, S_0x7fb90b116110;
+    %join;
+    %join;
+    %jmp t_0;
+t_1 ;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %end;
+t_2 ;
+    %delay 100000, 0;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %end;
+    .scope S_0x7fb90b116110;
+t_0 ;
+    %delay 600000, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 5466477, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1970041953, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1852141429, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1931497328, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1701994868, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1768910451, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b1162d0 .scope task, "test_10_false_alarm_single_sensor" "test_10_false_alarm_single_sensor" 2 211, 2 211 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_10_false_alarm_single_sensor ;
+    %vpi_call 2 213 "$display", "\012[TEST 10] False Alarm Test - Single Sensor Trigger" {0 0 0};
+    %vpi_call 2 214 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %vpi_call 2 215 "$display", "Simulating: Stray dog passes sensor 1 only" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 50000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 500000, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1180789875, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1696612716, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1634888992, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1382378085, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1668572516, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116490 .scope task, "test_11_sensor_noise" "test_11_sensor_noise" 2 225, 2 225 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_11_sensor_noise ;
+    %vpi_call 2 227 "$display", "\012[TEST 11] Sensor Noise Immunity Test" {0 0 0};
+    %vpi_call 2 228 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %vpi_call 2 229 "$display", "Simulating: Noisy sensor with bouncing" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 5000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 5000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 5000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %delay 5000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11da80_0, 0, 1;
+    %delay 150000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d970_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11da80_0, 0, 1;
+    %delay 500000, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 86, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1634494820, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 541421172, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1920540740, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1702064233, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1952784462, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1869181797, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116650 .scope task, "test_12_rapid_entries" "test_12_rapid_entries" 2 246, 2 246 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_12_rapid_entries ;
+    %vpi_call 2 248 "$display", "\012[TEST 12] Rush Hour Simulation - Rapid Entries" {0 0 0};
+    %vpi_call 2 249 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 100000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 50000, 0;
+    %pushi/vec4 5, 0, 32;
+T_16.12 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_16.13, 5;
+    %jmp/1 T_16.13, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 300000, 0;
+    %jmp T_16.12;
+T_16.13 ;
+    %pop/vec4 1;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 5404019, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1746946159, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1970413613, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 540352594, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1634756964, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 541421172, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1919509875, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116910 .scope task, "test_13_emergency_reset" "test_13_emergency_reset" 2 265, 2 265 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_13_emergency_reset ;
+    %vpi_call 2 267 "$display", "\012[TEST 13] Emergency System Reset" {0 0 0};
+    %vpi_call 2 268 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %vpi_call 2 269 "$display", "Performing emergency reset during operation" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 150000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11df20_0, 0, 1;
+    %delay 50000, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1164797298, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1734700643, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 2032161381, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1936028704, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1131375984, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1818588261, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116ad0 .scope task, "test_14_empty_parking_exit" "test_14_empty_parking_exit" 2 279, 2 279 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_14_empty_parking_exit ;
+    %vpi_call 2 281 "$display", "\012[TEST 14] Exit Attempt from Empty Parking" {0 0 0};
+    %vpi_call 2 282 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %delay 500000, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 67, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1869966964, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 542270829, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1634299507, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 543257632, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1516597871, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116c90 .scope task, "test_15_alternating_operations" "test_15_alternating_operations" 2 290, 2 290 0, S_0x7fb90b104220;
+ .timescale -9 -12;
+TD_tb_real_world_scenarios.test_15_alternating_operations ;
+    %vpi_call 2 292 "$display", "\012[TEST 15] Alternating Entry and Exit Operations" {0 0 0};
+    %vpi_call 2 293 "$display", "\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200\342\224\200" {0 0 0};
+    %pushi/vec4 3, 0, 32;
+T_19.14 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_19.15, 5;
+    %jmp/1 T_19.15, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 400000, 0;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_entry, S_0x7fb90b114ed0;
+    %join;
+    %delay 400000, 0;
+    %fork TD_tb_real_world_scenarios.simulate_vehicle_exit, S_0x7fb90b115090;
+    %join;
+    %delay 400000, 0;
+    %jmp T_19.14;
+T_19.15 ;
+    %pop/vec4 1;
+    %pushi/vec4 7, 0, 4;
+    %store/vec4 v0x7fb90b1149d0_0, 0, 4;
+    %pushi/vec4 3, 0, 4;
+    %store/vec4 v0x7fb90b104870_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b114930_0, 0, 1;
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %pushi/vec4 0, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 16748, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1952805486, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1635019118, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1730170736, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1701994868, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %pushi/vec4 1768910451, 0, 32; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %store/vec4 v0x7fb90b114a70_0, 0, 256;
+    %fork TD_tb_real_world_scenarios.check_state, S_0x7fb90b1046b0;
+    %join;
+    %end;
+S_0x7fb90b116e50 .scope module, "uut" "top_module" 2 23, 3 5 0, S_0x7fb90b104220;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "entry_sensor1";
+    .port_info 3 /INPUT 1 "entry_sensor2";
+    .port_info 4 /INPUT 1 "exit_sensor1";
+    .port_info 5 /INPUT 1 "exit_sensor2";
+    .port_info 6 /OUTPUT 4 "available_spots";
+    .port_info 7 /OUTPUT 4 "current_count";
+    .port_info 8 /OUTPUT 1 "parking_full";
+    .port_info 9 /OUTPUT 1 "entry_allowed";
+    .port_info 10 /OUTPUT 7 "seven_seg_ones";
+    .port_info 11 /OUTPUT 7 "seven_seg_tens";
+P_0x7fb90b115990 .param/l "DEBOUNCE_TIME" 0 3 7, +C4<00000000000000000000000000001010>;
+P_0x7fb90b1159d0 .param/l "MAX_CAPACITY" 0 3 6, +C4<00000000000000000000000000001010>;
+L_0x7fb90b273008 .functor BUFT 1, C4<00000000000000000000000000001010>, C4<0>, C4<0>, C4<0>;
+v0x7fb90b11c240_0 .net/2u *"_ivl_0", 31 0, L_0x7fb90b273008;  1 drivers
+L_0x7fb90b273098 .functor BUFT 1, C4<1010>, C4<0>, C4<0>, C4<0>;
+v0x7fb90b11c300_0 .net/2u *"_ivl_10", 3 0, L_0x7fb90b273098;  1 drivers
+L_0x7fb90b2730e0 .functor BUFT 1, C4<1010>, C4<0>, C4<0>, C4<0>;
+v0x7fb90b11c3a0_0 .net/2u *"_ivl_14", 3 0, L_0x7fb90b2730e0;  1 drivers
+v0x7fb90b11c440_0 .net *"_ivl_2", 31 0, L_0x7fb90b11e4d0;  1 drivers
+L_0x7fb90b273050 .functor BUFT 1, C4<0000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x7fb90b11c4f0_0 .net *"_ivl_5", 27 0, L_0x7fb90b273050;  1 drivers
+v0x7fb90b11c5e0_0 .net *"_ivl_6", 31 0, L_0x7fb90b11e650;  1 drivers
+v0x7fb90b11c690_0 .net "available_spots", 3 0, L_0x7fb90b11e790;  alias, 1 drivers
+v0x7fb90b11c740_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  1 drivers
+v0x7fb90b11c7d0_0 .net "current_count", 3 0, v0x7fb90b117690_0;  alias, 1 drivers
+v0x7fb90b11c8e0_0 .net "decrement", 0 0, v0x7fb90b11aef0_0;  1 drivers
+v0x7fb90b11c9b0_0 .net "entry_allowed", 0 0, v0x7fb90b11bf20_0;  alias, 1 drivers
+v0x7fb90b11ca40_0 .net "entry_sensor1", 0 0, v0x7fb90b11d970_0;  1 drivers
+v0x7fb90b11cad0_0 .net "entry_sensor1_clean", 0 0, v0x7fb90b117f30_0;  1 drivers
+v0x7fb90b11cba0_0 .net "entry_sensor2", 0 0, v0x7fb90b11da80_0;  1 drivers
+v0x7fb90b11cc30_0 .net "entry_sensor2_clean", 0 0, v0x7fb90b1185d0_0;  1 drivers
+v0x7fb90b11cd00_0 .net "exit_sensor1", 0 0, v0x7fb90b11db50_0;  1 drivers
+v0x7fb90b11cd90_0 .net "exit_sensor1_clean", 0 0, v0x7fb90b118c50_0;  1 drivers
+v0x7fb90b11cf60_0 .net "exit_sensor2", 0 0, v0x7fb90b11dc20_0;  1 drivers
+v0x7fb90b11cff0_0 .net "exit_sensor2_clean", 0 0, v0x7fb90b119360_0;  1 drivers
+v0x7fb90b11d080_0 .net "increment", 0 0, v0x7fb90b11a1c0_0;  1 drivers
+v0x7fb90b11d110_0 .net "ones_digit", 3 0, L_0x7fb90b11e8b0;  1 drivers
+v0x7fb90b11d1a0_0 .net8 "parking_full", 0 0, RS_0x7fb90b242188;  alias, 2 drivers
+v0x7fb90b11d270_0 .net "reset", 0 0, v0x7fb90b11df20_0;  1 drivers
+v0x7fb90b11d300_0 .net "seven_seg_ones", 6 0, v0x7fb90b119820_0;  alias, 1 drivers
+v0x7fb90b11d390_0 .net "seven_seg_tens", 6 0, v0x7fb90b119d40_0;  alias, 1 drivers
+v0x7fb90b11d420_0 .net "tens_digit", 3 0, L_0x7fb90b11e9d0;  1 drivers
+v0x7fb90b11d4d0_0 .net "valid_entry", 0 0, v0x7fb90b11abf0_0;  1 drivers
+v0x7fb90b11d5a0_0 .net "valid_exit", 0 0, v0x7fb90b11b6d0_0;  1 drivers
+L_0x7fb90b11e4d0 .concat [ 4 28 0 0], v0x7fb90b117690_0, L_0x7fb90b273050;
+L_0x7fb90b11e650 .arith/sub 32, L_0x7fb90b273008, L_0x7fb90b11e4d0;
+L_0x7fb90b11e790 .part L_0x7fb90b11e650, 0, 4;
+L_0x7fb90b11e8b0 .arith/mod 4, L_0x7fb90b11e790, L_0x7fb90b273098;
+L_0x7fb90b11e9d0 .arith/div 4, L_0x7fb90b11e790, L_0x7fb90b2730e0;
+S_0x7fb90b117270 .scope module, "counter" "vehicle_counter" 3 95, 4 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "increment";
+    .port_info 3 /INPUT 1 "decrement";
+    .port_info 4 /OUTPUT 1 "parking_full";
+    .port_info 5 /OUTPUT 4 "count";
+P_0x7fb90b117430 .param/l "MAX_CAPACITY" 0 4 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b1175e0_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b117690_0 .var "count", 3 0;
+v0x7fb90b117730_0 .net "decrement", 0 0, v0x7fb90b11aef0_0;  alias, 1 drivers
+v0x7fb90b1177c0_0 .net "increment", 0 0, v0x7fb90b11a1c0_0;  alias, 1 drivers
+v0x7fb90b117850_0 .var "parking_full", 0 0;
+v0x7fb90b1178f0_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+E_0x7fb90b117590 .event posedge, v0x7fb90b1178f0_0, v0x7fb90b1175e0_0;
+S_0x7fb90b117a20 .scope module, "debounce_entry1" "sensor_debounce" 3 30, 5 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor_in";
+    .port_info 3 /OUTPUT 1 "sensor_out";
+P_0x7fb90b117be0 .param/l "DEBOUNCE_TIME" 0 5 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b117d60_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b117e10_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b117ea0_0 .net "sensor_in", 0 0, v0x7fb90b11d970_0;  alias, 1 drivers
+v0x7fb90b117f30_0 .var "sensor_out", 0 0;
+v0x7fb90b117fc0_0 .var "shift_reg", 2 0;
+S_0x7fb90b118080 .scope module, "debounce_entry2" "sensor_debounce" 3 37, 5 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor_in";
+    .port_info 3 /OUTPUT 1 "sensor_out";
+P_0x7fb90b118240 .param/l "DEBOUNCE_TIME" 0 5 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b1183e0_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b1184b0_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b118540_0 .net "sensor_in", 0 0, v0x7fb90b11da80_0;  alias, 1 drivers
+v0x7fb90b1185d0_0 .var "sensor_out", 0 0;
+v0x7fb90b118660_0 .var "shift_reg", 2 0;
+S_0x7fb90b118740 .scope module, "debounce_exit1" "sensor_debounce" 3 45, 5 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor_in";
+    .port_info 3 /OUTPUT 1 "sensor_out";
+P_0x7fb90b118900 .param/l "DEBOUNCE_TIME" 0 5 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b118a80_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b118b20_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b118bc0_0 .net "sensor_in", 0 0, v0x7fb90b11db50_0;  alias, 1 drivers
+v0x7fb90b118c50_0 .var "sensor_out", 0 0;
+v0x7fb90b118ce0_0 .var "shift_reg", 2 0;
+S_0x7fb90b118db0 .scope module, "debounce_exit2" "sensor_debounce" 3 52, 5 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor_in";
+    .port_info 3 /OUTPUT 1 "sensor_out";
+P_0x7fb90b118fb0 .param/l "DEBOUNCE_TIME" 0 5 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b119110_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b1191b0_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b1192d0_0 .net "sensor_in", 0 0, v0x7fb90b11dc20_0;  alias, 1 drivers
+v0x7fb90b119360_0 .var "sensor_out", 0 0;
+v0x7fb90b1193f0_0 .var "shift_reg", 2 0;
+S_0x7fb90b1194c0 .scope module, "disp_ones" "display_controller" 3 125, 6 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 4 "value";
+    .port_info 3 /OUTPUT 7 "seven_seg";
+v0x7fb90b1196e0_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b119780_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b119820_0 .var "seven_seg", 6 0;
+v0x7fb90b1198d0_0 .net "value", 3 0, L_0x7fb90b11e8b0;  alias, 1 drivers
+S_0x7fb90b1199e0 .scope module, "disp_tens" "display_controller" 3 132, 6 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 4 "value";
+    .port_info 3 /OUTPUT 7 "seven_seg";
+v0x7fb90b119c00_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b119ca0_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b119d40_0 .var "seven_seg", 6 0;
+v0x7fb90b119df0_0 .net "value", 3 0, L_0x7fb90b11e9d0;  alias, 1 drivers
+S_0x7fb90b119f00 .scope module, "entry_edge" "edge_detector" 3 78, 7 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "signal_in";
+    .port_info 3 /OUTPUT 1 "pulse_out";
+v0x7fb90b11a120_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b11a1c0_0 .var "pulse_out", 0 0;
+v0x7fb90b11a280_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b11a330_0 .var "signal_delayed", 0 0;
+v0x7fb90b11a3c0_0 .net "signal_in", 0 0, v0x7fb90b11abf0_0;  alias, 1 drivers
+S_0x7fb90b11a4c0 .scope module, "entry_validator" "dual_sensor_validator" 3 60, 8 6 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor1";
+    .port_info 3 /INPUT 1 "sensor2";
+    .port_info 4 /OUTPUT 1 "valid_detection";
+v0x7fb90b11a7b0_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b11a940_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b11aad0_0 .net "sensor1", 0 0, v0x7fb90b117f30_0;  alias, 1 drivers
+v0x7fb90b11ab60_0 .net "sensor2", 0 0, v0x7fb90b1185d0_0;  alias, 1 drivers
+v0x7fb90b11abf0_0 .var "valid_detection", 0 0;
+S_0x7fb90b11ac80 .scope module, "exit_edge" "edge_detector" 3 85, 7 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "signal_in";
+    .port_info 3 /OUTPUT 1 "pulse_out";
+v0x7fb90b11ae50_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b11aef0_0 .var "pulse_out", 0 0;
+v0x7fb90b11af90_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b11b040_0 .var "signal_delayed", 0 0;
+v0x7fb90b11b0d0_0 .net "signal_in", 0 0, v0x7fb90b11b6d0_0;  alias, 1 drivers
+S_0x7fb90b11b1c0 .scope module, "exit_validator" "dual_sensor_validator" 3 69, 8 6 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "sensor1";
+    .port_info 3 /INPUT 1 "sensor2";
+    .port_info 4 /OUTPUT 1 "valid_detection";
+v0x7fb90b11b430_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b11b4d0_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+v0x7fb90b11b570_0 .net "sensor1", 0 0, v0x7fb90b118c50_0;  alias, 1 drivers
+v0x7fb90b11b620_0 .net "sensor2", 0 0, v0x7fb90b119360_0;  alias, 1 drivers
+v0x7fb90b11b6d0_0 .var "valid_detection", 0 0;
+S_0x7fb90b11b7d0 .scope module, "fsm" "parking_fsm" 3 105, 9 5 0, S_0x7fb90b116e50;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 4 "current_count";
+    .port_info 3 /OUTPUT 1 "parking_full";
+    .port_info 4 /OUTPUT 1 "entry_allowed";
+P_0x7fb90b11b990 .param/l "AVAILABLE" 1 9 17, C4<01>;
+P_0x7fb90b11b9d0 .param/l "EMPTY" 1 9 16, C4<00>;
+P_0x7fb90b11ba10 .param/l "FULL" 1 9 18, C4<10>;
+P_0x7fb90b11ba50 .param/l "MAX_CAPACITY" 0 9 6, +C4<00000000000000000000000000001010>;
+v0x7fb90b11bd10_0 .net "clk", 0 0, v0x7fb90b11d7c0_0;  alias, 1 drivers
+v0x7fb90b11bdb0_0 .net "current_count", 3 0, v0x7fb90b117690_0;  alias, 1 drivers
+v0x7fb90b11be70_0 .var "current_state", 1 0;
+v0x7fb90b11bf20_0 .var "entry_allowed", 0 0;
+v0x7fb90b11bfc0_0 .var "next_state", 1 0;
+v0x7fb90b11c0b0_0 .var "parking_full", 0 0;
+v0x7fb90b11c140_0 .net "reset", 0 0, v0x7fb90b11df20_0;  alias, 1 drivers
+E_0x7fb90b11bc80 .event anyedge, v0x7fb90b11be70_0;
+E_0x7fb90b11bcc0 .event anyedge, v0x7fb90b11be70_0, v0x7fb90b117690_0;
+S_0x7fb90b1043a0 .scope module, "timer_module" "timer_module" 10 5;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "enable";
+    .port_info 3 /OUTPUT 1 "timeout";
+    .port_info 4 /OUTPUT 32 "count";
+P_0x7fb90b104510 .param/l "MAX_COUNT" 0 10 6, +C4<00000010111110101111000010000000>;
+o0x7fb90b243418 .functor BUFZ 1, C4<z>; HiZ drive
+v0x7fb90b11e150_0 .net "clk", 0 0, o0x7fb90b243418;  0 drivers
+v0x7fb90b11e1e0_0 .var "count", 31 0;
+o0x7fb90b243478 .functor BUFZ 1, C4<z>; HiZ drive
+v0x7fb90b11e270_0 .net "enable", 0 0, o0x7fb90b243478;  0 drivers
+o0x7fb90b2434a8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x7fb90b11e300_0 .net "reset", 0 0, o0x7fb90b2434a8;  0 drivers
+v0x7fb90b11e390_0 .var "timeout", 0 0;
+E_0x7fb90b11e110 .event posedge, v0x7fb90b11e300_0, v0x7fb90b11e150_0;
+    .scope S_0x7fb90b117a20;
+T_20 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b117e10_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_20.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x7fb90b117fc0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b117f30_0, 0;
+    %jmp T_20.1;
+T_20.0 ;
+    %load/vec4 v0x7fb90b117fc0_0;
+    %parti/s 2, 0, 2;
+    %load/vec4 v0x7fb90b117ea0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x7fb90b117fc0_0, 0;
+    %load/vec4 v0x7fb90b117fc0_0;
+    %cmpi/e 7, 0, 3;
+    %jmp/0xz  T_20.2, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b117f30_0, 0;
+    %jmp T_20.3;
+T_20.2 ;
+    %load/vec4 v0x7fb90b117fc0_0;
+    %cmpi/e 0, 0, 3;
+    %jmp/0xz  T_20.4, 4;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b117f30_0, 0;
+T_20.4 ;
+T_20.3 ;
+T_20.1 ;
+    %jmp T_20;
+    .thread T_20;
+    .scope S_0x7fb90b118080;
+T_21 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b1184b0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_21.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x7fb90b118660_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b1185d0_0, 0;
+    %jmp T_21.1;
+T_21.0 ;
+    %load/vec4 v0x7fb90b118660_0;
+    %parti/s 2, 0, 2;
+    %load/vec4 v0x7fb90b118540_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x7fb90b118660_0, 0;
+    %load/vec4 v0x7fb90b118660_0;
+    %cmpi/e 7, 0, 3;
+    %jmp/0xz  T_21.2, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b1185d0_0, 0;
+    %jmp T_21.3;
+T_21.2 ;
+    %load/vec4 v0x7fb90b118660_0;
+    %cmpi/e 0, 0, 3;
+    %jmp/0xz  T_21.4, 4;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b1185d0_0, 0;
+T_21.4 ;
+T_21.3 ;
+T_21.1 ;
+    %jmp T_21;
+    .thread T_21;
+    .scope S_0x7fb90b118740;
+T_22 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b118b20_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_22.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x7fb90b118ce0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b118c50_0, 0;
+    %jmp T_22.1;
+T_22.0 ;
+    %load/vec4 v0x7fb90b118ce0_0;
+    %parti/s 2, 0, 2;
+    %load/vec4 v0x7fb90b118bc0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x7fb90b118ce0_0, 0;
+    %load/vec4 v0x7fb90b118ce0_0;
+    %cmpi/e 7, 0, 3;
+    %jmp/0xz  T_22.2, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b118c50_0, 0;
+    %jmp T_22.3;
+T_22.2 ;
+    %load/vec4 v0x7fb90b118ce0_0;
+    %cmpi/e 0, 0, 3;
+    %jmp/0xz  T_22.4, 4;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b118c50_0, 0;
+T_22.4 ;
+T_22.3 ;
+T_22.1 ;
+    %jmp T_22;
+    .thread T_22;
+    .scope S_0x7fb90b118db0;
+T_23 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b1191b0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_23.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x7fb90b1193f0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b119360_0, 0;
+    %jmp T_23.1;
+T_23.0 ;
+    %load/vec4 v0x7fb90b1193f0_0;
+    %parti/s 2, 0, 2;
+    %load/vec4 v0x7fb90b1192d0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x7fb90b1193f0_0, 0;
+    %load/vec4 v0x7fb90b1193f0_0;
+    %cmpi/e 7, 0, 3;
+    %jmp/0xz  T_23.2, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b119360_0, 0;
+    %jmp T_23.3;
+T_23.2 ;
+    %load/vec4 v0x7fb90b1193f0_0;
+    %cmpi/e 0, 0, 3;
+    %jmp/0xz  T_23.4, 4;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b119360_0, 0;
+T_23.4 ;
+T_23.3 ;
+T_23.1 ;
+    %jmp T_23;
+    .thread T_23;
+    .scope S_0x7fb90b11a4c0;
+T_24 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b11a940_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_24.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11abf0_0, 0;
+    %jmp T_24.1;
+T_24.0 ;
+    %load/vec4 v0x7fb90b11aad0_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_24.4, 9;
+    %load/vec4 v0x7fb90b11ab60_0;
+    %and;
+T_24.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_24.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b11abf0_0, 0;
+    %jmp T_24.3;
+T_24.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11abf0_0, 0;
+T_24.3 ;
+T_24.1 ;
+    %jmp T_24;
+    .thread T_24;
+    .scope S_0x7fb90b11b1c0;
+T_25 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b11b4d0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_25.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11b6d0_0, 0;
+    %jmp T_25.1;
+T_25.0 ;
+    %load/vec4 v0x7fb90b11b570_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_25.4, 9;
+    %load/vec4 v0x7fb90b11b620_0;
+    %and;
+T_25.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_25.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b11b6d0_0, 0;
+    %jmp T_25.3;
+T_25.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11b6d0_0, 0;
+T_25.3 ;
+T_25.1 ;
+    %jmp T_25;
+    .thread T_25;
+    .scope S_0x7fb90b119f00;
+T_26 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b11a280_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_26.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11a330_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11a1c0_0, 0;
+    %jmp T_26.1;
+T_26.0 ;
+    %load/vec4 v0x7fb90b11a3c0_0;
+    %assign/vec4 v0x7fb90b11a330_0, 0;
+    %load/vec4 v0x7fb90b11a3c0_0;
+    %load/vec4 v0x7fb90b11a330_0;
+    %inv;
+    %and;
+    %assign/vec4 v0x7fb90b11a1c0_0, 0;
+T_26.1 ;
+    %jmp T_26;
+    .thread T_26;
+    .scope S_0x7fb90b11ac80;
+T_27 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b11af90_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_27.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11b040_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11aef0_0, 0;
+    %jmp T_27.1;
+T_27.0 ;
+    %load/vec4 v0x7fb90b11b0d0_0;
+    %assign/vec4 v0x7fb90b11b040_0, 0;
+    %load/vec4 v0x7fb90b11b0d0_0;
+    %load/vec4 v0x7fb90b11b040_0;
+    %inv;
+    %and;
+    %assign/vec4 v0x7fb90b11aef0_0, 0;
+T_27.1 ;
+    %jmp T_27;
+    .thread T_27;
+    .scope S_0x7fb90b117270;
+T_28 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b1178f0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_28.0, 8;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x7fb90b117690_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b117850_0, 0;
+    %jmp T_28.1;
+T_28.0 ;
+    %load/vec4 v0x7fb90b1177c0_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_28.4, 9;
+    %load/vec4 v0x7fb90b117730_0;
+    %nor/r;
+    %and;
+T_28.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_28.2, 8;
+    %load/vec4 v0x7fb90b117690_0;
+    %pad/u 32;
+    %cmpi/u 10, 0, 32;
+    %jmp/0xz  T_28.5, 5;
+    %load/vec4 v0x7fb90b117690_0;
+    %addi 1, 0, 4;
+    %assign/vec4 v0x7fb90b117690_0, 0;
+T_28.5 ;
+    %jmp T_28.3;
+T_28.2 ;
+    %load/vec4 v0x7fb90b117730_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_28.9, 9;
+    %load/vec4 v0x7fb90b1177c0_0;
+    %nor/r;
+    %and;
+T_28.9;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_28.7, 8;
+    %load/vec4 v0x7fb90b117690_0;
+    %pad/u 32;
+    %cmpi/u 0, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_28.10, 5;
+    %load/vec4 v0x7fb90b117690_0;
+    %subi 1, 0, 4;
+    %assign/vec4 v0x7fb90b117690_0, 0;
+T_28.10 ;
+T_28.7 ;
+T_28.3 ;
+    %pushi/vec4 10, 0, 32;
+    %load/vec4 v0x7fb90b117690_0;
+    %pad/u 32;
+    %cmp/u;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %assign/vec4 v0x7fb90b117850_0, 0;
+T_28.1 ;
+    %jmp T_28;
+    .thread T_28;
+    .scope S_0x7fb90b11b7d0;
+T_29 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b11c140_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_29.0, 8;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x7fb90b11be70_0, 0;
+    %jmp T_29.1;
+T_29.0 ;
+    %load/vec4 v0x7fb90b11bfc0_0;
+    %assign/vec4 v0x7fb90b11be70_0, 0;
+T_29.1 ;
+    %jmp T_29;
+    .thread T_29;
+    .scope S_0x7fb90b11b7d0;
+T_30 ;
+    %wait E_0x7fb90b11bcc0;
+    %load/vec4 v0x7fb90b11be70_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_30.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_30.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_30.2, 6;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+    %jmp T_30.4;
+T_30.0 ;
+    %load/vec4 v0x7fb90b11bdb0_0;
+    %pad/u 32;
+    %cmpi/u 0, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_30.5, 5;
+    %pushi/vec4 1, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+    %jmp T_30.6;
+T_30.5 ;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+T_30.6 ;
+    %jmp T_30.4;
+T_30.1 ;
+    %load/vec4 v0x7fb90b11bdb0_0;
+    %pad/u 32;
+    %cmpi/u 10, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_30.7, 5;
+    %pushi/vec4 2, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+    %jmp T_30.8;
+T_30.7 ;
+    %load/vec4 v0x7fb90b11bdb0_0;
+    %pad/u 32;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_30.9, 4;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+    %jmp T_30.10;
+T_30.9 ;
+    %pushi/vec4 1, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+T_30.10 ;
+T_30.8 ;
+    %jmp T_30.4;
+T_30.2 ;
+    %load/vec4 v0x7fb90b11bdb0_0;
+    %pad/u 32;
+    %cmpi/u 10, 0, 32;
+    %jmp/0xz  T_30.11, 5;
+    %pushi/vec4 1, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+    %jmp T_30.12;
+T_30.11 ;
+    %pushi/vec4 2, 0, 2;
+    %store/vec4 v0x7fb90b11bfc0_0, 0, 2;
+T_30.12 ;
+    %jmp T_30.4;
+T_30.4 ;
+    %pop/vec4 1;
+    %jmp T_30;
+    .thread T_30, $push;
+    .scope S_0x7fb90b11b7d0;
+T_31 ;
+    %wait E_0x7fb90b11bc80;
+    %load/vec4 v0x7fb90b11be70_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_31.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_31.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_31.2, 6;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11c0b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11bf20_0, 0, 1;
+    %jmp T_31.4;
+T_31.0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11c0b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11bf20_0, 0, 1;
+    %jmp T_31.4;
+T_31.1 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11c0b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11bf20_0, 0, 1;
+    %jmp T_31.4;
+T_31.2 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x7fb90b11c0b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11bf20_0, 0, 1;
+    %jmp T_31.4;
+T_31.4 ;
+    %pop/vec4 1;
+    %jmp T_31;
+    .thread T_31, $push;
+    .scope S_0x7fb90b1194c0;
+T_32 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b119780_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_32.0, 8;
+    %pushi/vec4 127, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.1;
+T_32.0 ;
+    %load/vec4 v0x7fb90b1198d0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.2, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.3, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.4, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.5, 6;
+    %dup/vec4;
+    %pushi/vec4 4, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.6, 6;
+    %dup/vec4;
+    %pushi/vec4 5, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.7, 6;
+    %dup/vec4;
+    %pushi/vec4 6, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.8, 6;
+    %dup/vec4;
+    %pushi/vec4 7, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.9, 6;
+    %dup/vec4;
+    %pushi/vec4 8, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.10, 6;
+    %dup/vec4;
+    %pushi/vec4 9, 0, 4;
+    %cmp/u;
+    %jmp/1 T_32.11, 6;
+    %pushi/vec4 63, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.2 ;
+    %pushi/vec4 64, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.3 ;
+    %pushi/vec4 121, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.4 ;
+    %pushi/vec4 36, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.5 ;
+    %pushi/vec4 48, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.6 ;
+    %pushi/vec4 25, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.7 ;
+    %pushi/vec4 18, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.8 ;
+    %pushi/vec4 2, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.9 ;
+    %pushi/vec4 120, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.10 ;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.11 ;
+    %pushi/vec4 16, 0, 7;
+    %assign/vec4 v0x7fb90b119820_0, 0;
+    %jmp T_32.13;
+T_32.13 ;
+    %pop/vec4 1;
+T_32.1 ;
+    %jmp T_32;
+    .thread T_32;
+    .scope S_0x7fb90b1199e0;
+T_33 ;
+    %wait E_0x7fb90b117590;
+    %load/vec4 v0x7fb90b119ca0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_33.0, 8;
+    %pushi/vec4 127, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.1;
+T_33.0 ;
+    %load/vec4 v0x7fb90b119df0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.2, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.3, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.4, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.5, 6;
+    %dup/vec4;
+    %pushi/vec4 4, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.6, 6;
+    %dup/vec4;
+    %pushi/vec4 5, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.7, 6;
+    %dup/vec4;
+    %pushi/vec4 6, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.8, 6;
+    %dup/vec4;
+    %pushi/vec4 7, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.9, 6;
+    %dup/vec4;
+    %pushi/vec4 8, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.10, 6;
+    %dup/vec4;
+    %pushi/vec4 9, 0, 4;
+    %cmp/u;
+    %jmp/1 T_33.11, 6;
+    %pushi/vec4 63, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.2 ;
+    %pushi/vec4 64, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.3 ;
+    %pushi/vec4 121, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.4 ;
+    %pushi/vec4 36, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.5 ;
+    %pushi/vec4 48, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.6 ;
+    %pushi/vec4 25, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.7 ;
+    %pushi/vec4 18, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.8 ;
+    %pushi/vec4 2, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.9 ;
+    %pushi/vec4 120, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.10 ;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.11 ;
+    %pushi/vec4 16, 0, 7;
+    %assign/vec4 v0x7fb90b119d40_0, 0;
+    %jmp T_33.13;
+T_33.13 ;
+    %pop/vec4 1;
+T_33.1 ;
+    %jmp T_33;
+    .thread T_33;
+    .scope S_0x7fb90b104220;
+T_34 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x7fb90b11de90_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x7fb90b11dcf0_0, 0, 32;
+    %end;
+    .thread T_34;
+    .scope S_0x7fb90b104220;
+T_35 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x7fb90b11d7c0_0, 0, 1;
+T_35.0 ;
+    %delay 10000, 0;
+    %load/vec4 v0x7fb90b11d7c0_0;
+    %inv;
+    %store/vec4 v0x7fb90b11d7c0_0, 0, 1;
+    %jmp T_35.0;
+    %end;
+    .thread T_35;
+    .scope S_0x7fb90b104220;
+T_36 ;
+    %vpi_call 2 46 "$dumpfile", "simulation/waveform_full.vcd" {0 0 0};
+    %vpi_call 2 47 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x7fb90b104220 {0 0 0};
+    %end;
+    .thread T_36;
+    .scope S_0x7fb90b104220;
+T_37 ;
+    %vpi_call 2 52 "$display", "\012" {0 0 0};
+    %vpi_call 2 53 "$display", "\342\225\224\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\227" {0 0 0};
+    %vpi_call 2 54 "$display", "\342\225\221   SMART PARKING SYSTEM - COMPREHENSIVE TEST       \342\225\221" {0 0 0};
+    %vpi_call 2 55 "$display", "\342\225\221   Author: Akshat Raj (24BCE0043)                  \342\225\221" {0 0 0};
+    %vpi_call 2 56 "$display", "\342\225\232\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\220\342\225\235" {0 0 0};
+    %vpi_call 2 57 "$display", "\012" {0 0 0};
+    %fork TD_tb_real_world_scenarios.initialize, S_0x7fb90b114cf0;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_01_system_reset, S_0x7fb90b115290;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_02_single_entry, S_0x7fb90b115450;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_03_single_exit, S_0x7fb90b115610;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_04_multiple_entries, S_0x7fb90b1157d0;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_05_multiple_exits, S_0x7fb90b115a10;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_06_fill_to_capacity, S_0x7fb90b115bd0;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_07_entry_when_full, S_0x7fb90b115d90;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_08_exit_when_full, S_0x7fb90b115f50;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_09_simultaneous_operations, S_0x7fb90b116110;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_10_false_alarm_single_sensor, S_0x7fb90b1162d0;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_11_sensor_noise, S_0x7fb90b116490;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_12_rapid_entries, S_0x7fb90b116650;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_13_emergency_reset, S_0x7fb90b116910;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_14_empty_parking_exit, S_0x7fb90b116ad0;
+    %join;
+    %fork TD_tb_real_world_scenarios.test_15_alternating_operations, S_0x7fb90b116c90;
+    %join;
+    %fork TD_tb_real_world_scenarios.display_results, S_0x7fb90b114b20;
+    %join;
+    %delay 1000000, 0;
+    %vpi_call 2 83 "$finish" {0 0 0};
+    %end;
+    .thread T_37;
+    .scope S_0x7fb90b104220;
+T_38 ;
+    %wait E_0x7fb90b104670;
+    %load/vec4 v0x7fb90b11d850_0;
+    %pad/u 32;
+    %cmpi/u 10, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_38.0, 5;
+    %vpi_call 2 384 "$display", "ERROR: Counter exceeded maximum capacity!" {0 0 0};
+    %vpi_call 2 385 "$finish" {0 0 0};
+T_38.0 ;
+    %jmp T_38;
+    .thread T_38;
+    .scope S_0x7fb90b1043a0;
+T_39 ;
+    %wait E_0x7fb90b11e110;
+    %load/vec4 v0x7fb90b11e300_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_39.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x7fb90b11e1e0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11e390_0, 0;
+    %jmp T_39.1;
+T_39.0 ;
+    %load/vec4 v0x7fb90b11e270_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_39.2, 8;
+    %load/vec4 v0x7fb90b11e1e0_0;
+    %cmpi/u 50000000, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_39.4, 5;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7fb90b11e390_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x7fb90b11e1e0_0, 0;
+    %jmp T_39.5;
+T_39.4 ;
+    %load/vec4 v0x7fb90b11e1e0_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0x7fb90b11e1e0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11e390_0, 0;
+T_39.5 ;
+    %jmp T_39.3;
+T_39.2 ;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x7fb90b11e1e0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7fb90b11e390_0, 0;
+T_39.3 ;
+T_39.1 ;
+    %jmp T_39;
+    .thread T_39;
+# The file index is used to find the file name in the following table.
+:file_names 11;
+    "N/A";
+    "<interactive>";
+    "testbench/tb_real_world_scenarios.v";
+    "rtl/top_module.v";
+    "rtl/vehicle_counter.v";
+    "rtl/sensor_debounce.v";
+    "rtl/display_controller.v";
+    "rtl/edge_detector.v";
+    "rtl/dual_sensor_validator.v";
+    "rtl/parking_fsm.v";
+    "rtl/timer_module.v";
